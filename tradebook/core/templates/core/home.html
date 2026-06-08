@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+
+<h2>Добро пожаловать!</h2>
+
+{% if user.is_authenticated %}
+    <p>Вы вошли как {{ user.display_name }}</p>
+{% else %}
+    <p>Войдите или зарегистрируйтесь.</p>
+{% endif %}
+
+{% endblock %}
