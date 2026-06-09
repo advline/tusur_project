@@ -17,3 +17,12 @@ class EmailAuthenticationForm(AuthenticationForm):
     username = forms.EmailField(
         label='Email'
     )
+    
+class ProfileUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = CustomUser
+
+        fields = (
+            'nickname',
+        )

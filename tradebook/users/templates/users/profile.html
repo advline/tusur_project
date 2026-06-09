@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Профиль
+{% endblock %}
+
+{% block content %}
+
+<h2>Профиль пользователя</h2>
+
+<p>
+    <strong>Email:</strong>
+    {{ user.email }}
+</p>
+
+<p>
+    <strong>Никнейм:</strong>
+    {{ user.display_name }}
+</p>
+
+<p>
+    <strong>Public ID:</strong>
+    {{ user.public_id }}
+</p>
+
+<p>
+    <strong>Дата регистрации:</strong>
+    {{ user.created_at }}
+</p>
+
+<a href="{% url 'profile_edit' %}">
+    Изменить профиль
+</a>
+
+{% endblock %}

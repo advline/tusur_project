@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView, UpdateView
 
-from .forms import EmailAuthenticationForm, RegisterForm
+from .forms import EmailAuthenticationForm, RegisterForm, ProfileUpdateForm
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class RegisterView(CreateView):
     form_class = RegisterForm
@@ -13,3 +15,16 @@ class RegisterView(CreateView):
 class UserLoginView(LoginView):
     authentication_form = EmailAuthenticationForm
     template_name = 'registration/login.html'
+    
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'users/profile.html'
+    
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = ProfileUpdateForm
+
+    template_name = 'users/profile_edit.html'
+
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return self.request.user
