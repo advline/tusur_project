@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Мои счета
+{% endblock %}
+
+{% block content %}
+
+<h2>Мои счета</h2>
+
+{% if accounts %}
+
+    <ul>
+
+        {% for account in accounts %}
+
+            <li>
+                <b>Имя аккаунта:</b> {{ account.name }}
+                <b>Компания:</b> {{ account.exchange }}
+                <a href="{% url 'account_edit' account.pk %}">Изменить</a>
+                <a href="{% url 'account_delete' account.pk %}">Удалить</a>
+            </li>
+
+
+        {% endfor %}
+
+    </ul>
+
+{% else %}
+
+    <p>
+        У вас пока нет счетов.
+    </p>
+
+{% endif %}
+
+<a href="{% url 'account_create' %}">Создать счет</a>
+
+{% endblock %}

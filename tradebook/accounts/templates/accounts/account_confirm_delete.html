@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Удаление счета
+{% endblock %}
+
+{% block content %}
+
+<h2>Удалить счет?</h2>
+
+<p>
+    {{ object.name }}
+</p>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    <button type="submit">
+        Удалить
+    </button>
+
+</form>
+
+<a href="{% url 'account_list' %}">
+    Отмена
+</a>
+
+{% endblock %}

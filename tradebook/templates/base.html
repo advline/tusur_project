@@ -14,10 +14,9 @@
         <a href="{% url 'home' %}">Главная</a>
 
         {% if user.is_authenticated %}
-            <a href="{% url 'profile' %}">
-            Профиль
-            </a>
-
+            <a href="{% url 'profile' %}">Профиль</a>
+            <a href="{% url 'account_list' %}">Счета</a>
+            <b>User:</b>
             <span>{{ user.display_name }}</span>
 
             <form action="{% url 'logout' %}"

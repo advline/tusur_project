@@ -5,6 +5,7 @@ from .views import (
     UserLoginView,
     ProfileView,
     ProfileUpdateView,
+    UserLogoutView,
 )
 
 urlpatterns = [
@@ -29,5 +30,10 @@ urlpatterns = [
         'profile/edit/',
         ProfileUpdateView.as_view(),
         name='profile_edit'
+    ),
+    path(
+        'logout/',
+        UserLogoutView.as_view(),
+        name='logout'
     ),
 ]
