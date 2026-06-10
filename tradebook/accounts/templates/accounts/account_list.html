@@ -15,7 +15,7 @@
         {% for account in accounts %}
 
             <li>
-                <b>Имя аккаунта:</b> {{ account.name }}
+                <a href="{% url 'account_detail' account.pk %}"><b>Имя аккаунта:</b> {{ account.name }}</a>
                 <b>Компания:</b> {{ account.exchange }}
                 <a href="{% url 'account_edit' account.pk %}">Изменить</a>
                 <a href="{% url 'account_delete' account.pk %}">Удалить</a>

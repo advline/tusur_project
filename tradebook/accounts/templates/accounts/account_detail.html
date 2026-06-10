@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ account.name }}
+{% endblock %}
+
+{% block content %}
+
+<h2>
+    {{ account.exchange }}
+    —
+    {{ account.name }}
+</h2>
+
+<p>
+    {{ account.description }}
+</p>
+
+<p>
+    Всего сделок:
+    <strong>{{ trade_count }}</strong>
+</p>
+
+
+<p>
+    Прибыльных:
+    <strong>{{ wins }}</strong>
+</p>
+
+<p>
+    Убыточных:
+    <strong>{{ losses }}</strong>
+</p>
+
+<p>
+    Win Rate:
+    <strong>{{ win_rate }}%</strong>
+</p>
+
+<hr>
+
+<p>
+    PnL сегодня:
+    <strong>{{ today_pnl|floatformat:2 }}</strong>
+</p>
+
+<p>
+    PnL за месяц:
+    <strong>{{ month_pnl|floatformat:2 }}</strong>
+</p>
+
+<p>
+    Общий PnL:
+    <strong>{{ total_pnl|floatformat:2 }}</strong>
+</p>
+
+<a href="{% url 'trade_create' account.pk %}">
+    Добавить сделку
+</a>
+
+<hr>
+
+
+<h3>Сделки</h3>
+
+{% if account.trades.all %}
+
+<table border="1" cellpadding="5">
+
+    <thead>
+
+        <tr>
+
+            <th>Дата</th>
+
+            <th>Инструмент</th>
+
+            <th>Направление</th>
+
+            <th>Объем</th>
+
+            <th>PnL</th>
+
+            <th>Действия</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for trade in account.trades.all %}
+
+        <tr>
+
+            <td>
+                {{ trade.closed_at|date:"d.m.Y" }}
+            </td>
+
+            <td>
+                {{ trade.symbol }}
+            </td>
+
+            <td>
+                {{ trade.get_side_display }}
+            </td>
+
+            <td>
+                {{ trade.quantity|floatformat:3 }}
+            </td>
+
+            <td>
+                {{ trade.pnl|floatformat:2 }}
+            </td>
+
+            <td>
+                <a href="{% url 'trade_delete' trade.pk %}">Удалить</a>
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% else %}
+
+<p>
+    Сделок пока нет.
+</p>
+
+{% endif %}
+
+
+{% endblock %}

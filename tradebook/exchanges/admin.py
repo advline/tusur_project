@@ -4,10 +4,11 @@ from .models import Exchange
 
 # Register your models here.
 
+
 @admin.register(Exchange)
 class ExchangeAdmin(admin.ModelAdmin):
 
     list_display = (
-        'name',
-        'slug',
+        "name",
+        "slug",
     )

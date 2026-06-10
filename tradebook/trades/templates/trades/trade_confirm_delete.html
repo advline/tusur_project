@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>
+    Удалить сделку?
+</h2>
+
+<p>
+    {{ object.symbol }}
+</p>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    <button type="submit">
+        Удалить
+    </button>
+
+</form>
+
+{% endblock %}

@@ -10,42 +10,42 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
 
     list_display = (
-        'email',
-        'nickname',
-        'is_staff',
+        "email",
+        "nickname",
+        "is_staff",
     )
 
-    ordering = ('email',)
+    ordering = ("email",)
 
     fieldsets = (
         (
             None,
             {
-                'fields': (
-                    'email',
-                    'password',
+                "fields": (
+                    "email",
+                    "password",
                 )
-            }
+            },
         ),
         (
-            'Profile',
+            "Profile",
             {
-                'fields': (
-                    'nickname',
-                    'public_id',
+                "fields": (
+                    "nickname",
+                    "public_id",
                 )
-            }
+            },
         ),
         (
-            'Permissions',
+            "Permissions",
             {
-                'fields': (
-                    'is_active',
-                    'is_staff',
-                    'is_superuser',
-                    'groups',
-                    'user_permissions',
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
                 )
-            }
+            },
         ),
     )
