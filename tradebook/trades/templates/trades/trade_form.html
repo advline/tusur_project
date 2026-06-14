@@ -2,18 +2,21 @@
 
 {% block content %}
 
-<h2>Добавить сделку для счета "{{ account.name }}"</h2>
+<div class="container my-5">
+	<h2>Добавить сделку для счета "{{ account.name }}"</h2>
 
-<form method="post">
+	<form method="post">
 
-    {% csrf_token %}
+		{% csrf_token %}
 
-    {{ form.as_p }}
+		{{ form.as_p }}
 
-    <button type="submit">
-        Сохранить
-    </button>
+		<button type="submit">
+			Сохранить
+		</button>
 
-</form>
+	</form>
+
+</div>
 
 {% endblock %}

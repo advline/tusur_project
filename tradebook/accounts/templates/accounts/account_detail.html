@@ -6,132 +6,136 @@
 
 {% block content %}
 
-<h2>
-    {{ account.exchange }}
-    —
-    {{ account.name }}
-</h2>
+<div class="container my-5">
+	<h2>
+		{{ account.exchange }}
+		—
+		{{ account.name }}
+	</h2>
 
-<p>
-    {{ account.description }}
-</p>
+	<p>
+		<small>{{ account.description }}</small>
+	</p>
 
-<p>
-    Всего сделок:
-    <strong>{{ trade_count }}</strong>
-</p>
-
-
-<p>
-    Прибыльных:
-    <strong>{{ wins }}</strong>
-</p>
-
-<p>
-    Убыточных:
-    <strong>{{ losses }}</strong>
-</p>
-
-<p>
-    Win Rate:
-    <strong>{{ win_rate }}%</strong>
-</p>
-
-<hr>
-
-<p>
-    PnL сегодня:
-    <strong>{{ today_pnl|floatformat:2 }}</strong>
-</p>
-
-<p>
-    PnL за месяц:
-    <strong>{{ month_pnl|floatformat:2 }}</strong>
-</p>
-
-<p>
-    Общий PnL:
-    <strong>{{ total_pnl|floatformat:2 }}</strong>
-</p>
-
-<a href="{% url 'trade_create' account.pk %}">
-    Добавить сделку
-</a>
-
-<hr>
+	<p>
+		Всего сделок:
+		<strong>{{ trade_count }}</strong>
+	</p>
 
 
-<h3>Сделки</h3>
+	<p>
+		Прибыльных:
+		<strong>{{ wins }}</strong>
+	</p>
 
-{% if account.trades.all %}
+	<p>
+		Убыточных:
+		<strong>{{ losses }}</strong>
+	</p>
 
-<table border="1" cellpadding="5">
+	<p>
+		Win Rate:
+		<strong>{{ win_rate }}%</strong>
+	</p>
 
-    <thead>
+	<hr class="col-1 my-4">
 
-        <tr>
+	<p>
+		PnL сегодня:
+		<strong>{{ today_pnl|floatformat:2 }}</strong>
+	</p>
 
-            <th>Дата</th>
+	<p>
+		PnL за месяц:
+		<strong>{{ month_pnl|floatformat:2 }}</strong>
+	</p>
 
-            <th>Инструмент</th>
+	<p>
+		Общий PnL:
+		<strong>{{ total_pnl|floatformat:2 }}</strong>
+	</p>
 
-            <th>Направление</th>
+	<a href="{% url 'trade_create' account.pk %}", class="btn btn-secondary">
+		Добавить сделку
+	</a>
 
-            <th>Объем</th>
+	<hr>
 
-            <th>PnL</th>
 
-            <th>Действия</th>
+	<h3>Сделки</h3>
 
-        </tr>
+	{% if account.trades.all %}
 
-    </thead>
+	<table class="table">
 
-    <tbody>
+		<thead>
 
-        {% for trade in account.trades.all %}
+			<tr>
 
-        <tr>
+				<th>Дата</th>
 
-            <td>
-                {{ trade.closed_at|date:"d.m.Y" }}
-            </td>
+				<th>Инструмент</th>
 
-            <td>
-                {{ trade.symbol }}
-            </td>
+				<th>Направление</th>
 
-            <td>
-                {{ trade.get_side_display }}
-            </td>
+				<th>Объем</th>
 
-            <td>
-                {{ trade.quantity|floatformat:3 }}
-            </td>
+				<th>PnL</th>
 
-            <td>
-                {{ trade.pnl|floatformat:2 }}
-            </td>
+				<th>Действия</th>
 
-            <td>
-                <a href="{% url 'trade_delete' trade.pk %}">Удалить</a>
-            </td>
+			</tr>
 
-        </tr>
+		</thead>
 
-        {% endfor %}
+		<tbody>
 
-    </tbody>
+			{% for trade in account.trades.all %}
 
-</table>
+			<tr>
 
-{% else %}
+				<td>
+					{{ trade.closed_at|date:"d.m.Y" }}
+				</td>
 
-<p>
-    Сделок пока нет.
-</p>
+				<td>
+					{{ trade.symbol }}
+				</td>
 
-{% endif %}
+				<td>
+					{{ trade.get_side_display }}
+				</td>
 
+				<td>
+					{{ trade.quantity|floatformat:3 }}
+				</td>
+
+				<td>
+					{{ trade.pnl|floatformat:2 }}
+				</td>
+
+				<td>
+					<a href="{% url 'trade_delete' trade.pk %}">Удалить</a>
+				</td>
+
+			</tr>
+
+			{% endfor %}
+
+		</tbody>
+
+	</table>
+
+	{% else %}
+
+	<p>
+		Сделок пока нет.
+	</p>
+
+	{% endif %}
+
+	<a href="{% url 'account_list' %}"><< Список счетов</a>
+
+</div>
 
 {% endblock %}

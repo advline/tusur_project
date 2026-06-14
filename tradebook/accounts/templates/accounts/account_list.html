@@ -6,34 +6,45 @@
 
 {% block content %}
 
-<h2>Мои счета</h2>
+<div class="container my-5">
+	<h2>Мои счета</h2>
 
-{% if accounts %}
+	{% if accounts %}
 
-    <ul>
+		<table class="table">
+		  <thead>
+			<tr>
+			  <th scope="col">#</th>
+			  <th scope="col">Имя счета</th>
+			  <th scope="col">Компания</th>
+			  <th scope="col">Действие</th>
+			</tr>
+		  </thead>
+		  
+		  <tbody>
+			{% for account in accounts %}
+			<tr>
+			  <th scope="row">{{ forloop.counter }}</th>
+			  <td><a href="{% url 'account_detail' account.pk %}">{{ account.name }}</a></td>
+			  <td>{{ account.exchange }}</td>
+			  <td>	<a href="{% url 'account_edit' account.pk %}">Изменить</a> | <a href="{% url 'account_delete' account.pk %}">Удалить</a></td>
+			</tr>
+			{% endfor %}
+		   </tbody>
+		</table>
 
-        {% for account in accounts %}
+	{% else %}
 
-            <li>
-                <a href="{% url 'account_detail' account.pk %}"><b>Имя аккаунта:</b> {{ account.name }}</a>
-                <b>Компания:</b> {{ account.exchange }}
-                <a href="{% url 'account_edit' account.pk %}">Изменить</a>
-                <a href="{% url 'account_delete' account.pk %}">Удалить</a>
-            </li>
+		<p>
+			У вас пока нет счетов.
+		</p>
 
+	{% endif %}
 
-        {% endfor %}
+	<a class="btn btn-secondary" href="{% url 'account_create' %}">Создать счет</a>
 
-    </ul>
-
-{% else %}
-
-    <p>
-        У вас пока нет счетов.
-    </p>
-
-{% endif %}
-
-<a href="{% url 'account_create' %}">Создать счет</a>
-
+</div>
+	
+	
 {% endblock %}
+	

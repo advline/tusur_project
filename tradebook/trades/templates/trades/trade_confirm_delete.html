@@ -2,22 +2,23 @@
 
 {% block content %}
 
-<h2>
-    Удалить сделку?
-</h2>
+<div class="container my-5">
 
-<p>
-    {{ object.symbol }}
-</p>
+	<h2>Удалить сделку?</h2>
 
-<form method="post">
+	<p>
+		{{ object.symbol }}
+	</p>
 
-    {% csrf_token %}
+	<form method="post">
 
-    <button type="submit">
-        Удалить
-    </button>
+		{% csrf_token %}
 
-</form>
+		<button type="submit">
+			Удалить
+		</button>
+
+	</form>
+</div>
 
 {% endblock %}

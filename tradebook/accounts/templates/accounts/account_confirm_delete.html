@@ -6,24 +6,28 @@
 
 {% block content %}
 
-<h2>Удалить счет?</h2>
+<div class="container my-5">
 
-<p>
-    {{ object.name }}
-</p>
+	<h2>Удалить счет?</h2>
 
-<form method="post">
+	<p>
+		{{ object.name }}
+	</p>
 
-    {% csrf_token %}
+	<form method="post">
 
-    <button type="submit">
-        Удалить
-    </button>
+		{% csrf_token %}
 
-</form>
+		<button type="submit">
+			Удалить
+		</button>
 
-<a href="{% url 'account_list' %}">
-    Отмена
-</a>
+	</form>
+
+	<a href="{% url 'account_list' %}">
+		Отмена
+	</a>
+
+</div>
 
 {% endblock %}

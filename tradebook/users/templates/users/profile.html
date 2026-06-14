@@ -6,30 +6,34 @@
 
 {% block content %}
 
-<h2>Профиль пользователя</h2>
+<div class="container my-5">
+	<h2>Профиль пользователя</h2>
 
-<p>
-    <strong>Email:</strong>
-    {{ user.email }}
-</p>
+	<p>
+		<strong>Email:</strong>
+		{{ user.email }}
+	</p>
 
-<p>
-    <strong>Никнейм:</strong>
-    {{ user.display_name }}
-</p>
+	<p>
+		<strong>Никнейм:</strong>
+		{{ user.display_name }}
+	</p>
 
-<p>
-    <strong>Public ID:</strong>
-    {{ user.public_id }}
-</p>
+	<p>
+		<strong>Public ID:</strong>
+		{{ user.public_id }}
+	</p>
 
-<p>
-    <strong>Дата регистрации:</strong>
-    {{ user.created_at }}
-</p>
+	<p>
+		<strong>Дата регистрации:</strong>
+		{{ user.created_at }}
+	</p>
 
-<a href="{% url 'profile_edit' %}">
-    Изменить профиль
-</a>
+	<a href="{% url 'profile_edit' %}">
+		Изменить профиль
+	</a>
+	
+	<hr class="col-1 my-4">
+</div>
 
 {% endblock %}

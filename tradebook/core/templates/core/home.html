@@ -6,12 +6,23 @@
 
 {% block content %}
 
-<h2>Добро пожаловать!</h2>
 
-{% if user.is_authenticated %}
-    <p>Вы вошли как {{ user.display_name }}</p>
-{% else %}
-    <p>Войдите или зарегистрируйтесь.</p>
-{% endif %}
+
+
+
+    <div class="container my-5">
+      <h1>Добро пожаловать!</h1>
+      <div class="col-lg-8 px-0">
+		{% if user.is_authenticated %}
+			<p class="fs-5">Вы вошли как {{ user.display_name }}</p>
+		{% else %}
+			<p class="fs-5"><a href="{% url 'login' %}">Войдите</a> или <a href="{% url 'register' %}">зарегистрируйтесь</a>.</p>
+		{% endif %}
+
+        <hr class="col-1 my-4">
+      </div>
+    </div>
+
+
 
 {% endblock %}

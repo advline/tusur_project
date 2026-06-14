@@ -1,18 +1,23 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 
 {% block content %}
 
-<h2>Вход</h2>
 
-<form method="post">
-    {% csrf_token %}
+<div class="container my-5">
+	<h2>Вход</h2>
+	<form method="post">
+		{% csrf_token %}
 
-    {{ form.as_p }}
+		{{ form.as_p }}
 
-    <button type="submit">
-        Войти
-    </button>
+		<button type="submit">
+			Войти
+		</button>
 
-</form>
+	</form>
+
+	<hr class="col-1 my-4">
+
+</div>
 
 {% endblock %}

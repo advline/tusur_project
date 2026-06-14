@@ -6,18 +6,21 @@
 
 {% block content %}
 
-<h2>Создать счет</h2>
+<div class="container my-5">
+	<h2>Создать счет</h2>
 
-<form method="post">
+	<form method="post">
 
-    {% csrf_token %}
+		{% csrf_token %}
 
-    {{ form.as_p }}
+		{{ form.as_p }}
 
-    <button type="submit">
-        Создать
-    </button>
+		<button type="submit">
+			Создать
+		</button>
 
-</form>
+	</form>
+	<hr class="col-1 my-4">
+</div>
 
 {% endblock %}
