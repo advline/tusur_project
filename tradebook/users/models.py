@@ -11,9 +11,13 @@ class CustomUser(AbstractUser):
 
     email = models.EmailField(unique=True, verbose_name="Email")
 
-    nickname = models.CharField(max_length=50, blank=True, verbose_name="Никнейм")
+    nickname = models.CharField(
+        max_length=50, blank=True, verbose_name="Никнейм"
+    )
 
-    public_id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    public_id = models.UUIDField(
+        default=uuid.uuid4, unique=True, editable=False
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -9,7 +9,9 @@ from exchanges.models import Exchange
 class TradingAccount(models.Model):
 
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="accounts"
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="accounts",
     )
 
     exchange = models.ForeignKey(

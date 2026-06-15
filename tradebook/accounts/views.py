@@ -1,4 +1,4 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView,
@@ -9,9 +9,12 @@ from django.views.generic import (
 )
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
-from django.db.models import Sum, Count, Q
+from django.db.models import Sum
+
+# from django.db.models import Count, Q
 from django.utils import timezone
-from datetime import timedelta
+
+# from datetime import timedelta
 
 from .models import TradingAccount
 
@@ -90,7 +93,7 @@ class AccountDeleteView(LoginRequiredMixin, DeleteView):
 class AccountDetailView(LoginRequiredMixin, DetailView):
 
     model = TradingAccount
-    
+
     template_name = "accounts/account_detail.html"
 
     context_object_name = "account"
@@ -112,13 +115,14 @@ class AccountDetailView(LoginRequiredMixin, DetailView):
         month_start = today.replace(day=1)
 
         today_pnl = (
-            trades.filter(closed_at=today).aggregate(total=Sum("pnl"))["total"] or 0
+            trades.filter(closed_at=today).aggregate(total=Sum("pnl"))["total"]
+            or 0
         )
 
         month_pnl = (
-            trades.filter(closed_at__gte=month_start).aggregate(total=Sum("pnl"))[
-                "total"
-            ]
+            trades.filter(closed_at__gte=month_start).aggregate(
+                total=Sum("pnl")
+            )["total"]
             or 0
         )
 

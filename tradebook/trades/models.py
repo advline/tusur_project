@@ -42,7 +42,9 @@ class Trade(models.Model):
         max_digits=20, decimal_places=8, default=0, verbose_name="Комиссия"
     )
 
-    closed_at = models.DateTimeField(default=timezone.now, verbose_name="Дата закрытия")
+    closed_at = models.DateTimeField(
+        default=timezone.now, verbose_name="Дата закрытия"
+    )
 
     note = models.TextField(blank=True, verbose_name="Комментарий")
 

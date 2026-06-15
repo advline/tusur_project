@@ -8,5 +8,9 @@ urlpatterns = [
         TradeCreateView.as_view(),
         name="trade_create",
     ),
-    path("trades/<int:pk>/delete/", TradeDeleteView.as_view(), name="trade_delete"),
+    path(
+        "trades/<int:pk>/delete/",
+        TradeDeleteView.as_view(),
+        name="trade_delete",
+    ),
 ]
