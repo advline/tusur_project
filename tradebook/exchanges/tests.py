@@ -1,3 +1,12 @@
 from django.test import TestCase
 
-# Create your tests here.
+from .models import Exchange
+
+
+class ExchangeModelTest(TestCase):
+
+    def test_exchange_creation(self):
+
+        exchange = Exchange.objects.create(name="Bybit")
+
+        self.assertEqual(exchange.name, "Bybit")
